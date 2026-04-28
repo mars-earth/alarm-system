@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Адмін-панель</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding-top: 100px; }
+        button { font-size: 1.5em; margin: 20px; padding: 10px 20px; }
+    </style>
+</head>
+<body>
+
+<h1>Адмін-панель</h1>
+
+<button id="activate">Увімкнути тривогу</button>
+<button id="deactivate">Вимкнути тривогу</button>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io(window.location.origin);;
+    const ADMIN_KEY = "12345"; // той самий ключ
+
+    document.getElementById("activate").onclick = () => {
+        socket.emit("setAlert", { state: true, key: ADMIN_KEY });
+    };
+
+    document.getElementById("deactivate").onclick = () => {
+        socket.emit("setAlert", { state: false, key: ADMIN_KEY });
+    };
+</script>
+
+</body>
+</html>

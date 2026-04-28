@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Система повітряної тривоги</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+            transition: background-color 0.5s;
+            color: white;
+            font-size: 2em;
+        }
+        .alert { background-color: red; }
+        .safe { background-color: green; }
+
+        button {
+            font-size: 0.6em;
+            padding: 10px 20px;
+            margin-top: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="safe">
+
+<div id="status">🟢 ВІДБІЙ ТРИВОГИ</div>
+
+<button id="enableSound">🔊 Увімкнути звук</button>
+
+<audio id="alarmSound" src="alarm.wav" preload="auto"></audio>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    const statusDiv = document.getElementById("status");
+    const body = document.body;
+    const alarmSound = document.getElementById("alarmSound");
+    const enableBtn = document.getElementById("enableSound");
+
+    let soundEnabled = false;
+
+    enableBtn.onclick = () => {
+        soundEnabled = true;
+        enableBtn.style.display = "none";
+    };
+
+    socket.on("alert", (state) => {
+        if(state) {
+            body.classList.remove("safe");
+            body.classList.add("alert");
+            statusDiv.textContent = "🔴 ПОВІТРЯНА ТРИВОГА!";
+
+            if(soundEnabled) {
+                alarmSound.currentTime = 0;
+                alarmSound.loop = true;
+                alarmSound.play();
+            }
+        } else {
+            body.classList.remove("alert");
+            body.classList.add("safe");
+            statusDiv.textContent = "🟢 ВІДБІЙ ТРИВОГИ";
+
+            alarmSound.pause();
+            alarmSound.currentTime = 0;
+        }
+    });
+</script>
+
+</body>
+</html>
