@@ -4,30 +4,38 @@ const { Server } = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+
+const io = new Server(server, {
+    cors: {
+        origin: "*"
+    }
+});
 
 app.use(express.static(__dirname));
 
 let alertState = false;
 
 io.on('connection', (socket) => {
-    console.log('Клієнт підключився');
 
-    // Надсилаємо поточний стан тривоги
+    console.log("Client connected");
+
     socket.emit('alert', alertState);
 
-    // Клієнт змінив стан тривоги
     socket.on('setAlert', (state) => {
-        alertState = state;
+        console.log("SET ALERT:", state);
+
+        alertState = Boolean(state);
+
         io.emit('alert', alertState);
     });
 
-    // Розблокувати аудіо на всіх клієнтах
-    socket.on('unlockAudioAll', () => {
-        io.emit('unlockAudio');
+    socket.on('disconnect', () => {
+        console.log("Client disconnected");
     });
 });
 
-server.listen(3000, () => {
-    console.log('Сервер працює на http://localhost:3000');
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => {
+    console.log('Server running on port', PORT);
 });
