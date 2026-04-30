@@ -34,6 +34,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     const socket = io();
+
     const statusDiv = document.getElementById("status");
     const body = document.body;
     const alarmSound = document.getElementById("alarmSound");
@@ -47,6 +48,8 @@
     };
 
     socket.on("alert", (state) => {
+        console.log("ALERT:", state);
+
         if(state) {
             body.classList.remove("safe");
             body.classList.add("alert");
