@@ -14,17 +14,26 @@ const io = new Server(server, {
 app.use(express.static(__dirname));
 
 let alertState = false;
+const ADMIN_KEY = "12345";
 
 io.on('connection', (socket) => {
-
     console.log("Client connected");
 
+    // відправляємо поточний стан при підключенні
     socket.emit('alert', alertState);
 
-    socket.on('setAlert', (state) => {
-        console.log("SET ALERT:", state);
+    socket.on('setAlert', (data) => {
+        console.log("SET ALERT:", data);
 
-        alertState = Boolean(state);
+        // перевірка ключа
+        if (!data || data.key !== ADMIN_KEY) {
+            console.log("❌ Invalid admin key");
+            return;
+        }
+
+        alertState = Boolean(data.state);
+
+        console.log("STATE:", alertState);
 
         io.emit('alert', alertState);
     });
