@@ -19,13 +19,11 @@ const ADMIN_KEY = "12345";
 io.on('connection', (socket) => {
     console.log("Client connected");
 
-    // відправляємо поточний стан при підключенні
     socket.emit('alert', alertState);
 
     socket.on('setAlert', (data) => {
         console.log("SET ALERT:", data);
 
-        // перевірка ключа
         if (!data || data.key !== ADMIN_KEY) {
             console.log("❌ Invalid admin key");
             return;
