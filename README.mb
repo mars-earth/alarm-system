@@ -1,0 +1,30 @@
+# 🚨 Air Alert System (Real-time Alert System)
+
+This is a simple real-time web application built with **Node.js + Express + Socket.IO** that allows toggling an “air alert” state for all connected users in real time.
+
+The project is deployed on Render.
+
+---
+
+## ⚙️ Features
+
+- 🔴 Activate air alert in real time  
+- 🟢 Deactivate alert (all-clear state)  
+- 🔐 Simple admin authentication via admin key  
+- 🌐 Real-time updates using WebSockets (Socket.IO)  
+- 🔊 Optional alarm sound for users  
+- 📡 Works online via deployment (Render)
+
+---
+
+## 🧱 Technologies Used
+
+- Node.js  
+- Express.js  
+- Socket.IO  
+- HTML  
+- CSS  
+- JavaScript  
+
+---
+
