@@ -2,9 +2,8 @@
 
 This is a simple real-time web application built with **Node.js + Express + Socket.IO** that allows toggling an “air alert” state for all connected users in real time.
 
-The project is deployed on Render.
-
----
+## 🌍 Live Demo
+👉 https://alarm-system-1q17.onrender.com/
 
 ## ⚙️ Features
 
@@ -15,8 +14,6 @@ The project is deployed on Render.
 - 🔊 Optional alarm sound for users  
 - 📡 Works online via deployment (Render)
 
----
-
 ## 🧱 Technologies Used
 
 - Node.js  
@@ -26,5 +23,18 @@ The project is deployed on Render.
 - CSS  
 - JavaScript  
 
----
+## 🔐 Admin Panel
+URL: /admin.html
+Used to control the alert system.
 
+## 🌐 How It Works
+Admin sends a command (true / false)
+Server verifies the admin key
+Server broadcasts state via Socket.IO
+All connected clients update instantly
+
+## 👨‍💻 Author
+Created by "mars-earth".
+
+## 📄 License
+This project is for portfolio/demo purposes.
