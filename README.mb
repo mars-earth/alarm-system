@@ -1,11 +1,11 @@
-## 🚨 Air Alert System (Real-time Alert System)
+ 🚨 Air Alert System (Real-time Alert System)
 
 This is a simple real-time web application built with **Node.js + Express + Socket.IO** that allows toggling an “air alert” state for all connected users in real time.
 
-## 🌍 Live Demo
+ 🌍 Live Demo
 👉 https://alarm-system-1q17.onrender.com/
 
-## ⚙️ Features
+ ⚙️ Features
 
 - 🔴 Activate air alert in real time  
 - 🟢 Deactivate alert (all-clear state)  
@@ -14,7 +14,7 @@ This is a simple real-time web application built with **Node.js + Express + Sock
 - 🔊 Optional alarm sound for users  
 - 📡 Works online via deployment (Render)
 
-## 🧱 Technologies Used
+ 🧱 Technologies Used
 
 - Node.js  
 - Express.js  
@@ -23,18 +23,18 @@ This is a simple real-time web application built with **Node.js + Express + Sock
 - CSS  
 - JavaScript  
 
-## 🔐 Admin Panel
+ 🔐 Admin Panel
 URL: /admin.html
 Used to control the alert system.
 
-## 🌐 How It Works
+ 🌐 How It Works
 Admin sends a command (true / false)
 Server verifies the admin key
 Server broadcasts state via Socket.IO
 All connected clients update instantly
 
-## 👨‍💻 Author
+ 👨‍💻 Author
 Created by "mars-earth".
 
-## 📄 License
+ 📄 License
 This project is for portfolio/demo purposes.
